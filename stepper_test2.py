@@ -6,29 +6,52 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM) # using BCM numbering system
 
 # setting up pins (states and allocations to driver)
-DIR = 12 
-STEP = 16
+# DIR =  20
+M1A =20
+M1B = 16
+
+M2A = 23
+M2B = 24
+#STEP = 
 # MODE0 = 17
 # MODE1 = 4
 # MODE2 = 3
 # EN = 20
 
 # input_list = [MODE0, MODE1, MODE2]
-output_list = [STEP, DIR]
+#output_list = [STEP, DIR, 7]
+output_list2 = [M1A, M1B, M2A, M2B]
 
 # GPIO.setup(input_list, GPIO.IN)
-GPIO.setup(output_list, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(output_list2, GPIO.OUT, initial=GPIO.LOW)
 #GPIO.setup(DIR, GPIO.OUT, initial=GPIO.LOW)
-GPIO.output(DIR, 1)
+#GPIO.output(DIR, 1)
 
 # Simple PWM generation
 def flashing(frequency):
-    dutycycle = 70
+    dutycycle = 20
 
     p = GPIO.PWM(STEP, frequency)
     p.start(dutycycle)
+    #sleep(1/(2*frequency))
+    #q = GPIO.PWM(7, frequency)
+    #q.start(dutycycle)
     input('Press return to stop ')
     p.stop()
+    #q.stop()
+
+    
+def old_motor_driver_flashing(freq):
+    dutycycle = 8
+    
+    p = GPIO.PWM(M1B, freq)
+    q = GPIO.PWM(M2B, freq)
+    p.start(dutycycle)
+    q.start(dutycycle)
+    input('press return to reset')
+    GPIO.setup(output_list2, GPIO.OUT, initial=GPIO.LOW)
+    p.stop()
+    q.stop()
 
 def flashing2(frequency):
     for dc in range(0, 100, 10):     
@@ -80,7 +103,7 @@ def ramp2(gauge, frequency):
         sleep(1)
         p.stop()
 
-flashing(1)
+old_motor_driver_flashing(100)
 
 
 GPIO.cleanup()
