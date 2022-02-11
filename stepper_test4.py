@@ -36,4 +36,13 @@ def flashing(frequency):
     GPIO.setup(output_list, GPIO.OUT, initial=GPIO.OUT)
     #q.stop()
 
-flashing(1000)
+def flashing2(frequency):
+    for dc in range(0, 100, 10):     
+        p = GPIO.PWM(STEP, frequency)
+        p.start(dc)
+        #input('Press return to stop ')
+        sleep(1)
+        p.stop()
+    input('Press return to stop')
+
+flashing2(100)
