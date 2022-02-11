@@ -28,12 +28,7 @@ for i in range(3):
     """
 
 # Set duty cycle and frequency
-pi.set_PWM_dutycycle(STEP, 128)  # PWM 1/2 On 1/2 Off
-pi.set_PWM_frequency(STEP, 500)  # 500 pulses per second
 
-sleep(5)
-
-pi.stop()
 
 def generate_ramp(ramp):
     """Generate ramp wave forms.
