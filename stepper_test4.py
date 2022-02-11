@@ -36,4 +36,4 @@ def flashing(frequency):
     GPIO.setup(output_list, GPIO.OUT, initial=GPIO.OUT)
     #q.stop()
 
-flashing(100)
+flashing(1000)
