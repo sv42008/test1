@@ -33,6 +33,7 @@ def flashing(frequency):
     #q.start(dutycycle)
     input('Press return to stop ')
     p.stop()
+    GPIO.setup(output_list, GPIO.OUT, initial=GPIO.OUT)
     #q.stop()
 
 flashing(10)
