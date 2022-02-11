@@ -45,4 +45,14 @@ def flashing2(frequency):
         p.stop()
     input('Press return to stop')
 
-flashing2(100)
+def ramp2(frequency):
+    dutycycle = 50
+    for i in range(0, 100):
+        
+        p = GPIO.PWM(STEP, 1+ (i/100)*(frequency-1))
+        p.start(dutycycle)
+        sleep(1)
+        p.stop()
+
+
+ramp2(100)
