@@ -12,20 +12,6 @@ pi = pigpio.pi()
 pi.set_mode(DIR, pigpio.OUTPUT)
 pi.set_mode(STEP, pigpio.OUTPUT)
 
-# Set up input switch
-pi.set_mode(SWITCH, pigpio.INPUT)
-pi.set_pull_up_down(SWITCH, pigpio.PUD_UP)
-"""
-MODE = (14, 15, 18)   # Microstep Resolution GPIO Pins
-RESOLUTION = {'Full': (0, 0, 0),
-              'Half': (1, 0, 0),
-              '1/4': (0, 1, 0),
-              '1/8': (1, 1, 0),
-              '1/16': (0, 0, 1),
-              '1/32': (1, 0, 1)}
-for i in range(3):
-    pi.write(MODE[i], RESOLUTION['Full'][i])
-    """
 
 # Set duty cycle and frequency
 
