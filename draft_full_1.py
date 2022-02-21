@@ -134,3 +134,4 @@ def circle_distribution_into_matrix(tuple_with_array_and_object, distribution_la
 # print(distribution_into_matrix(initialise_petridish('first', 'circle', 1, (10, 10), 1), circle_not_filled, 3))
 
 a = circle_distribution_into_matrix(initialise_petridish('first', 'circle', 1, (25, 25), 1), circle_not_filled, 5)
+
