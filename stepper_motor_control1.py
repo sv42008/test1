@@ -1,7 +1,9 @@
+from dis import dis
 from random import choice
 from time import sleep, time
 import RPi.GPIO as GPIO
 import numpy
+from draft_full_1 import *
 # from draft_full_1 import 
 
 microstepping_dict = {"fullstep" : [0, 0, 0], "1/2": [1, 0, 0], "1/4": [0, 1, 0],
@@ -38,12 +40,16 @@ def pin_numbering_checker():
             if continue_editing == "n":
                 break
 
-def setup_pins(pins, output_or_input):
+def setup_pins(pins, output_or_input = "output"):
+    """'pins' is a list of integer values relating to the pin number, choose pins as output or input, defaults to output."""
     for pin in pins:
-        if output_or_input == "output":
-            GPIO.setup(pin, GPIO.OUTPUT, initial=GPIO.LOW)
-        else:
+        if output_or_input == "input":
             GPIO.setup(pin, GPIO.INPUT)
+        else:
+            GPIO.setup(pin, GPIO.OUTPUT, initial=GPIO.LOW)
+
+def calibration():
+    return
 
 def rotation_full_step(number_rotations, dir, which_motor_step, frequency, dutycycle):
     dc = dutycycle
@@ -53,7 +59,7 @@ def rotation_full_step(number_rotations, dir, which_motor_step, frequency, dutyc
     time_on = (number_rotations/degrees_per_pulse)/frequency
     sleep(time_on)
     pwm_object.stop()
-    print("Moved by %s" % number_rotations)
+    print("Moved by {}".format(number_rotations))
     
 def rotation_semi_step(number_rotations, dir, which_motor_step, frequency, dutycycle, microstep_type):   
     """
@@ -69,6 +75,12 @@ def rotation_semi_step(number_rotations, dir, which_motor_step, frequency, dutyc
     time_on = (number_rotations/degrees_per_pulse)/frequency
     sleep(time_on)
     pwm_object.stop()
-    print("Moved by %s" % number_rotations)
+    print("Moved by {}".format(number_rotations))
 
-pin_numbering_checker
+def coordinates(distribution_array, x_y_size):
+    """input is of an array and the size of the petridish"""
+    height = len(distribution_array)
+    width = len(distribution_array[0])
+
+    
+    
