@@ -1,8 +1,11 @@
+"""contains function to set up pins in output/input, working pin checker, pin double-checker to ensure correct 
+pins assigned, [will add later] calibration of motors.
+Also has microstepping and pins dictionary.
+"""
+
 from time import sleep, time
 import RPi.GPIO as GPIO
 import numpy as np
-from draft_full_1 import *
-# from draft_full_1 import 
 
 microstepping_dict = {"fullstep" : [0, 0, 0], "1/2": [1, 0, 0], "1/4": [0, 1, 0],
 "1/8": [0, 0, 1], "1/16": [1, 1, 0], "1/32": [1, 1, 1] }  
@@ -40,44 +43,18 @@ def pin_numbering_checker():
 
 def setup_pins(pins, output_or_input = "output"):
     """'pins' is a list of integer values relating to the pin number, choose pins as output or input, defaults to output."""
+    GPIO.setmode(GPIO.BCM)
     for pin in pins:
         if output_or_input == "input":
             GPIO.setup(pin, GPIO.INPUT)
         else:
             GPIO.setup(pin, GPIO.OUTPUT, initial=GPIO.LOW)
 
-def calibration():
-    return
-
-def rotation_full_step(number_rotations, dir, which_motor_step, frequency, dutycycle):
-    dc = dutycycle
-    degrees_per_pulse = 0.9
-    pwm_object = GPIO.PWM(which_motor_step, frequency)
-    pwm_object.start(dc)
-    time_on = (number_rotations/degrees_per_pulse)/frequency
-    sleep(time_on)
-    pwm_object.stop()
-    print("Moved by {}".format(number_rotations))
-    
-def rotation_semi_step(number_rotations, dir, which_motor_step, frequency, dutycycle, microstep_type):   
-    """
-    make sure MODE_PINS are setup before running this function. 
-    insert how to format input in here, and description of the function.
-    """
-    if microstep_type == "1":
-        Pins_dict["modes 1"][0]
-        """Fix/continue editing this condition"""
-    degrees_per_pulse = 0.9
-    pwm_object = GPIO.PWM(which_motor_step, frequency)
-    pwm_object.start(dutycycle)
-    time_on = (number_rotations/degrees_per_pulse)/frequency
-    sleep(time_on)
-    pwm_object.stop()
-    print("Moved by {}".format(number_rotations))
-
-def coordinates(distribution_array, x_y_size):
-    """input is of an array and the size of the petridish"""
-    height = len(distribution_array)
-    width = len(distribution_array[0])
-    for x in np.nditer(distribution_array):
-        
+def broken_pin_checker():
+    for i in Pins_dict: 
+        # this might be a wrong if condition statement, check with Nikhil.
+        if Pins_dict[:] in (27, 22, 11, 21):
+            print("Broken pins chosen. Please choose other GPIO pins. Also, double check the numbering system being used (this code uses Broadcom)")
+            return
+        else:
+            print("All pins should be working, according to last known broken list.")

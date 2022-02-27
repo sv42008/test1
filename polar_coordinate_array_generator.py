@@ -12,4 +12,4 @@ def circle_creator(radius, zeros_array):
 
 def circle_thickness(radius, thickness, zeros_array):
     zeros_array[:, (radius-1)-int(round(thickness/2, 0)): (radius-1) + int(round(thickness/2, 0))] =1
-    return zeros_array
+    return zeros_array 
