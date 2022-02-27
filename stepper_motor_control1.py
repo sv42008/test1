@@ -2,7 +2,7 @@ from dis import dis
 from random import choice
 from time import sleep, time
 import RPi.GPIO as GPIO
-import numpy
+import numpy as np
 from draft_full_1 import *
 # from draft_full_1 import 
 
@@ -81,6 +81,5 @@ def coordinates(distribution_array, x_y_size):
     """input is of an array and the size of the petridish"""
     height = len(distribution_array)
     width = len(distribution_array[0])
-
-    
-    
+    for x in np.nditer(distribution_array):
+        
