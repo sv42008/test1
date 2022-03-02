@@ -1,3 +1,5 @@
+# from cmath import polar
+from matplotlib.pyplot import polar
 import numpy as np
 
 def cartesian_to_polar(array1):
@@ -16,8 +18,13 @@ def cartesian_to_polar(array1):
         else:
             c = y[i]/x[i]
             chi.append(np.arctan(c))
-            
-    return r, chi
+    # want to return polar coordinate array
+    polar_zeros_arr = np.zeros((non_zero_coordinates.shape[0], non_zero_coordinates[1]))
+    for i in chi:
+        for j in r:
+            polar_zeros_arr[i, j] = 1
+    polar_arr = polar_zeros_arr
+    return polar_arr
 
 def circle_into_array(general_array):
     """this function places a circle in a general array fed in."""

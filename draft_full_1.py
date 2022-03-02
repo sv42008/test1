@@ -9,7 +9,6 @@
 # This will depend on what our robot looks like. 
 """
 from time import sleep
-from turtle import circle
 #import RPi.GPIO as GPIO
 import numpy
 
