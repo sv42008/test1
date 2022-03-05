@@ -1,44 +1,27 @@
-# from cmath import polar
-from matplotlib.pyplot import polar
 import numpy as np
-
-def cartesian_to_polar(array1):
-    non_zero_coordinates = np.argwhere(array1 == 1)
-    x = []
-    y = []
-    for i in range(non_zero_coordinates.shape[0]):
-        x.append(non_zero_coordinates[i, 0])
-        y.append(non_zero_coordinates[i, 1])
-    r  = (x**2 + y**2)**(1/2)
     
-    chi = []
-    for i in range(len(x)):
-        if x[i] == 0:
-            chi.append(np.pi/2)
-        else:
-            c = y[i]/x[i]
-            chi.append(np.arctan(c))
-    # want to return polar coordinate array
-    polar_zeros_arr = np.zeros((non_zero_coordinates.shape[0], non_zero_coordinates[1]))
-    for i in chi:
-        for j in r:
-            polar_zeros_arr[i, j] = 1
-    polar_arr = polar_zeros_arr
-    return polar_arr
+def circle_filled(arr, radius):
+    width = arr.shape[1]
+    height = arr.shape[0]
+    for x in np.linspace(-1*(width/2), width/2, width+1):
+        for y in np.linspace(height/2, -1*height/2, height+1):
+        # print(x, " ", y)
+            x_cood = int(x + width/2)
+            y_cood = int(-1*(y + height/2))
+            if x**2+y**2 <= radius**2:
+                arr[int(y_cood)][int(x_cood)] = 1
+    return arr
 
-def circle_into_array(general_array):
-    """this function places a circle in a general array fed in."""
-    height_array = general_array.shape[0]
-    width_array = general_array.shape[1]
-    
-def circle_lambda_fn():
-    return lambda x, radius: (radius**2 - x**2)**(1/2) # = y
-
-def straight_line_lambda_fn():
-    return lambda x, gradient: gradient*x # = y
-
-def circle_distrn_2(radius):
-    return radius**2
+def circle_line(arr, radius, linewidth):
+    width = arr.shape[1]
+    height = arr.shape[0]
+    for x in np.linspace(-1*(width/2), width/2, width+1):
+        for y in np.linspace(height/2, -1*height/2, height+1):
+            x_cood = int(x + width/2)
+            y_cood = int(-1*(y + height/2))
+            if x**2+y**2 >= radius**2-(linewidth/2)**2 and x**2+y**2 <= radius**2+(linewidth/2)**2:
+                arr[int(y_cood)][int(x_cood)] = 1
+    return arr
 
 
 

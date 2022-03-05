@@ -35,3 +35,4 @@ im.setup_pins(Pins_dict["step 1"])
 im.setup_pins(Pins_dict["step 2"])
 im.setup_pins(Pins_dict["dir 1"])
 im.setup_pins(Pins_dict["dir 2"])
+
