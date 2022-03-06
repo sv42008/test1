@@ -1,5 +1,7 @@
 import numpy as np
-"""Function to convert cartesian distribution in array into polar array."""
+"""Function to convert cartesian distribution in array into polar array, 
+with columns relating to intervals along r, and the rows relating to chi (angle
+of the coordinate axis"""
 
 def cartesian_to_polar(cartesian_arr, polar_arr):
   width = cartesian_arr.shape[1]
