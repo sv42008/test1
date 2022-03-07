@@ -1,4 +1,5 @@
-"""code which 1. defines the arm lengths in mm, 2. converts a polar array into an output of"""
+"""code which 1. defines the arm lengths in mm, 2. converts a polar array
+ into an output of two lists, theta and phi."""
 
 # import RPi.GPIO as GPIO
 import numpy as np
@@ -24,9 +25,10 @@ def second_arm_angle(r):
     return phi
 
 def reading_polar_arr(arr):
-    """returns array of first column = theta, second column = phi"""
+    """returns two lists, first theta, second phi"""
     non_zero_coordinates = np.argwhere(arr)
-    angle_arr =np.zeros((1, 2))
+    theta_list = []
+    phi_list = []
     for i in non_zero_coordinates:
         r = i[1]
         chi = i[0]
@@ -36,16 +38,9 @@ def reading_polar_arr(arr):
         else:
             phi = second_arm_angle(r)
             theta_prime = first_arm_angle(r)
-        # print(r, " ", phi, " ", theta_prime)
+
         theta = theta_prime + chi
-        print([phi, theta])
-        np.append(angle_arr, np.array([theta, phi]), axis = 0)
-
-        # print(angle_arr)
-    return angle_arr
-
-        
-array_random = np.zeros((10, 10))
-for i in range(10):
-    array_random[np.random.randint(10)][np.random.randint(10)] =1
-print(reading_polar_arr(array_random))
+        theta_list.append(theta)
+        phi_list.append(phi)
+       
+    return theta_list, phi_list
