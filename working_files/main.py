@@ -5,6 +5,7 @@ from distribution_functions import *
 from array_conversion import *
 from motor_angles import *
 from pi_pin_setup import *
+from motor_pump_control import *
 
 # Initialising array
 resolution_of_arr(20)
@@ -31,3 +32,5 @@ for i in pins_dict:
     #  setting all pins in pins_dict (modes, dir, step) to output
     setup_pins(pins_dict[i])
 
+#running motor
+motors(theta_list, phi_list)

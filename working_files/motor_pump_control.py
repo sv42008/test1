@@ -1,7 +1,7 @@
 """Controlling the motor from instructions set up from before."""
 
 from time import sleep
-# from RPi.GPIO import GPIO
+from RPi.GPIO import GPIO
 from pi_pin_setup import *
 
 # global variables to update in functions.
@@ -11,6 +11,7 @@ gbl_phi = 0
 completion1 = False
 error_angle_1 = 0
 error_angle_2 = 0
+pump_action_time = 0.4
 # nbr_motor_1_angle = 0.0
 # nbr_motor_2_angle = 0.0
 # microstepping = microstepping_dict["1/2"]
@@ -72,24 +73,39 @@ def motor1_movements(theta):
     global completion1; completion1 = False
 
     STEP = pins_dict["step 1"]
-    number_of_steps_unrounded = theta/(microstep1*0.9)
-    number_of_steps = round(number_of_steps_unrounded)
+    DIR = pins_dict["dir 1"]
+
+    if theta > gbl_theta:
+        # check direction.
+        GPIO.output(DIR, 0)
+        print("Direction for motor 1 set as clockwise")
+        number_of_steps_unrounded = (theta - gbl_theta)/(microstep1*0.9)
+        number_of_steps = round(number_of_steps_unrounded)
+    if theta < gbl_theta:
+        # check direction.
+        GPIO.output(DIR, 1)
+        print("Direction for motor 2 set as anticlockwise")
+        number_of_steps_unrounded = (gbl_theta - theta)/(microstep1*0.9)
+        number_of_steps = round(number_of_steps_unrounded)    
 
     # updates the total error variables from rounding
     global error_angle_1; error_angle_1 = error_angle_1 + (number_of_steps_unrounded - number_of_steps)
 
     # pulse
     for i in range(number_of_steps):
-        # GPIO.output(STEP, 1)
+        GPIO.output(STEP, 1)
         print("pulse on")
         epoch()
-        # GPIO.output(STEP, 0)
+        GPIO.output(STEP, 0)
         print("pulse off")
         epoch()
 
     # updating current angle
     global gbl_theta
     gbl_theta = gbl_theta + theta
+    
+    if gbl_theta > 360:
+        gbl_theta = gbl_theta - 360
     print("current angle is {}".format(gbl_theta))
 
     # when code finishes running, update completion1 True.
@@ -102,8 +118,18 @@ def motor2_movements(phi):
     global completion2; completion2 = False
 
     STEP = pins_dict["step 2"]
-    number_of_steps_unrounded = phi/(microstep2*0.9)
-    number_of_steps = round(number_of_steps_unrounded)
+    DIR = pins_dict["dir 2"]
+
+    if phi > gbl_phi:
+        # check direction
+        # GPIO.output(DIR, 0)
+        number_of_steps_unrounded = (phi - gbl_phi)/(microstep2*0.9)
+        number_of_steps = round(number_of_steps_unrounded)
+    if phi < gbl_phi:
+        # check direction
+        # GPIO.output(DIR, 1)
+        number_of_steps_unrounded = (gbl_phi - phi)/(microstep2*0.9)
+        number_of_steps = round(number_of_steps_unrounded)
 
     # updates the total error variables from rounding
     global error_angle_2; error_angle_2 = error_angle_2 + (number_of_steps_unrounded - number_of_steps)
@@ -120,6 +146,9 @@ def motor2_movements(phi):
     # updating current angle
     global gbl_phi
     gbl_phi = gbl_phi + phi
+
+    if gbl_phi > 360:
+        gbl_phi =  gbl_phi - 360
     print("current angle is {}".format(gbl_phi))
 
     # when code finishes running, update completion1 True.
@@ -127,13 +156,27 @@ def motor2_movements(phi):
 
     return 
 
+def single_peristaltic_pump_action():
+    global pump_action_time
+
+    GPIO.output(pins_dict["pump"], 1)
+    sleep(pump_action_time)
+    GPIO.output(pins_dict["pump"], 0)
+
+    global timer
+    timer = timer + pump_action_time
+    print(timer)
+    return
+
+
 def motors(theta_list, phi_list):
-  for theta in theta_list:
+    for theta in theta_list:
         for phi in phi_list:
-            epoch()
-            motor1_movements(theta); motor2_movements(phi)
-            epoch()
-            
+            motor1_movements(theta)
+            motor2_movements(phi) 
+            single_peristaltic_pump_action()
+    return
+
 
 # testing code::
 
