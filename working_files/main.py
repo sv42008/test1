@@ -33,4 +33,5 @@ for i in pins_dict:
     setup_pins(pins_dict[i])
 
 #running motor
+motion_parameters(0.005, "1/2")
 motors(theta_list, phi_list)
