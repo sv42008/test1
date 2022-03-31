@@ -1,7 +1,7 @@
 """Stores dictionary for pins used on pi. Functions: 1. can check the dictionary before we run code to 
 avoid damage to the board with pins set up incorrectly. 2. turns the pins into outputs. 3. can change 
 the number of microsteps motor takes by changing the mode pins 3. Checks for broken pins."""
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 
 microstepping_dict = {"fullstep" : [0, 0, 0], "1/2": [1, 0, 0], "1/4": [0, 1, 0],
