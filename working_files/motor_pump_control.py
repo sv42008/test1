@@ -101,7 +101,7 @@ def motor1_movements(theta):
         epoch()
 
     # updating current angle
-    global gbl_theta
+    # global gbl_theta
     gbl_theta = gbl_theta + theta
     
     if gbl_theta > 360:
