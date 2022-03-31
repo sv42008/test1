@@ -88,7 +88,9 @@ def motor1_movements(theta):
         print("Direction for motor 2 set as anticlockwise")
         number_of_steps_unrounded = (gbl_theta - theta)/(microstep1*0.9)
         number_of_steps = round(number_of_steps_unrounded)    
-
+    else:
+        number_of_steps_unrounded = 0
+        number_of_steps = 0
     # updates the total error variables from rounding
     global error_angle_1; error_angle_1 = error_angle_1 + (number_of_steps_unrounded - number_of_steps)
 
