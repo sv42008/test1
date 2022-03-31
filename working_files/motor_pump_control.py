@@ -58,7 +58,7 @@ def motion_parameters(delta_t, microstep1_str = "fullstep", microstep2_str = "fu
                 print("{} set to high".format(pins_dict["modes 1"][i]))
                 # GPIO.output(pins_dict["modes 1"][i], 1)
             
-    print("Parameters set: time interval = {}, microstepping for motor 1 = {}, microstepping for motor 2 = {}".format(delta_t, microstepping1, microstepping2))
+    print("Parameters set: time interval = {}, microstepping for motor 1 = {}, microstepping for motor 2 = {}".format(delta_t, microstep1, microstep2))
     return
 
 def epoch():
