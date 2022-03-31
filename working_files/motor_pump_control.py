@@ -176,7 +176,7 @@ def motors(theta_list, phi_list):
         for phi in phi_list:
             motor1_movements(theta)
             motor2_movements(phi) 
-            single_peristaltic_pump_action()
+            #single_peristaltic_pump_action()
     return
 
 
