@@ -1,7 +1,7 @@
 """Controlling the motor from instructions set up from before."""
 
 from time import sleep
-from RPi.GPIO import GPIO
+import RPi.GPIO as GPIO
 from pi_pin_setup import *
 
 # global variables to update in functions.
