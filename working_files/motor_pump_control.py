@@ -117,6 +117,7 @@ def motor1_movements(theta):
 def motor2_movements(phi):
     """moves the first motor by theta, and adds it to a current angle reading."""
     global completion2; completion2 = False
+    global gbl_theta; global gbl_phi
 
     STEP = pins_dict["step 2"]
     DIR = pins_dict["dir 2"]
