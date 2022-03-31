@@ -144,7 +144,7 @@ def motor2_movements(phi):
         epoch()
 
     # updating current angle
-    global gbl_phi
+    # global gbl_phi
     gbl_phi = gbl_phi + phi
 
     if gbl_phi > 360:
