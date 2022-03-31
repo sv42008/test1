@@ -71,7 +71,7 @@ def epoch():
 def motor1_movements(theta):
     """moves the first motor by theta, and adds it to a current angle reading."""
     global completion1; completion1 = False
-    gbl_theta = gbl_theta
+    gbl_theta 
 
     STEP = pins_dict["step 1"]
     DIR = pins_dict["dir 1"]
