@@ -49,10 +49,10 @@ def setup_pins(pins, output_or_input = "output"):
     for pin in pins:
         if output_or_input == "input":
             print("{} set to input.".format(pin))
-            GPIO.setup(pin, GPIO.INPUT)
+            GPIO.setup(pin, GPIO.IN)
         else:
             print("{} set to output.".format(pin))
-            GPIO.setup(pin, GPIO.OUTPUT, initial=GPIO.LOW)
+            GPIO.setup(pin, GPIO.OUT, initial=GPIO.LOW)
 
 
 def broken_pin_checker():
