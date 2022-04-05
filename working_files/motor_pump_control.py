@@ -126,12 +126,12 @@ def motor2_movements(phi):
 
     if phi > gbl_phi:
         # check direction
-        # GPIO.output(DIR, 0)
+        GPIO.output(DIR, 0)
         number_of_steps_unrounded = (phi - gbl_phi)/(microstep2*0.9)
         number_of_steps = round(number_of_steps_unrounded)
     if phi < gbl_phi:
         # check direction
-        # GPIO.output(DIR, 1)
+        GPIO.output(DIR, 1)
         number_of_steps_unrounded = (gbl_phi - phi)/(microstep2*0.9)
         number_of_steps = round(number_of_steps_unrounded)
 
@@ -140,10 +140,10 @@ def motor2_movements(phi):
 
     # pulse
     for i in range(number_of_steps):
-        # GPIO.output(STEP, 1)
+        GPIO.output(STEP, 1)
         print("pulse on")
         epoch()
-        # GPIO.output(STEP, 0)
+        GPIO.output(STEP, 0)
         print("pulse off")
         epoch()
 
