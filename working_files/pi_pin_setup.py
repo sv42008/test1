@@ -28,11 +28,11 @@ def pin_numbering_checker():
                 print("Which pins do you want to change? (0, 1, 2?)")
                 choice_of_mode_pins1 = int(input())
                 print("Choose the new pin for mode {} pin in {}".format(choice_of_mode_pins1, choice_of_edit))
-                pins_dict[choice_of_edit][choice_of_mode_pins1] = input()
+                pins_dict[choice_of_edit][choice_of_mode_pins1] = int(input())
 
             else:
                 print("Choose the new pin for {}".format(choice_of_edit))
-                pins_dict[choice_of_edit] = input()
+                pins_dict[choice_of_edit] = int(input())
             
             print(pins_dict)
             print("Would you like to continue editing the dictionary? (y or n)") 
