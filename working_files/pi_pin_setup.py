@@ -31,7 +31,7 @@ def pin_numbering_checker():
                 pins_dict[choice_of_edit][choice_of_mode_pins1] = input()
 
             else:
-                print("Choose the new pin for {}".format(choice_of_mode_pins1))
+                print("Choose the new pin for {}".format(choice_of_edit))
                 pins_dict[choice_of_edit] = input()
             
             print(pins_dict)
