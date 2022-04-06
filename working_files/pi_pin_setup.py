@@ -24,7 +24,7 @@ def pin_numbering_checker():
             print("Which one do you want to edit?")
             choice_of_edit = input()
          
-            if choice_of_edit == "modes 1" or "modes 2":
+            if (choice_of_edit == "modes 1") or (choice_of_edit == "modes 2"):
                 print("Which pins do you want to change? (0, 1, 2?)")
                 choice_of_mode_pins1 = int(input())
                 print("Choose the new pin for mode {} pin in {}".format(choice_of_mode_pins1, choice_of_edit))
