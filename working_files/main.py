@@ -33,5 +33,14 @@ for i in pins_dict:
     setup_pins(pins_dict[i])
 
 #running motor
-motion_parameters(0.5, "fullstep")
-motors(theta_list, phi_list)
+# motion_parameters(0.5, "fullstep")
+# motors(theta_list, phi_list)
+
+STEP = 26
+for i in range(1000):
+        GPIO.output(STEP, 1)
+        print("pulse on")
+        epoch()
+        GPIO.output(STEP, 0)
+        print("pulse off")
+        epoch()
