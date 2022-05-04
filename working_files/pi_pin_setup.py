@@ -8,7 +8,7 @@ microstepping_dict = {"fullstep" : [0, 0, 0], "1/2": [1, 0, 0], "1/4": [0, 1, 0]
 "1/8": [0, 0, 1], "1/16": [1, 1, 0], "1/32": [1, 1, 1] }  
 
 pins_dict = {"modes 1": [10, 12, 14], "modes 2": [26, 19, 13], "dir 1": [18], "dir 2": [5], "step 1": [8], 
-"step 2": [6]}
+"step 2": [26]}
 
 
 def pin_numbering_checker():
