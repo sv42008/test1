@@ -1,5 +1,6 @@
 """code which 1. defines the arm lengths in mm, 2. converts a polar array
- into an output of two lists, theta and phi."""
+ into an output of two lists, theta and phi.
+ r_tilda is r normalised with length of the arms"""
 
 # import RPi.GPIO as GPIO
 import numpy as np
@@ -24,9 +25,9 @@ def second_arm_angle(r):
     phi = 2*np.pi - np.arccos(cos_phi) 
     return phi
 
-def reading_polar_arr(arr):
+def reading_polar_arr(polar_arr):
     """returns two lists, first theta, second phi"""
-    non_zero_coordinates = np.argwhere(arr)
+    non_zero_coordinates = np.argwhere(polar_arr)
     theta_list = []
     phi_list = []
     for i in non_zero_coordinates:

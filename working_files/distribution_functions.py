@@ -22,3 +22,11 @@ def circle_line(arr, radius, linewidth):
             if x**2+y**2 >= radius**2-(linewidth/2)**2 and x**2+y**2 <= radius**2+(linewidth/2)**2:
                 arr[int(y_cood)][int(x_cood)] = 1
     return arr
+
+def all_filled(arr):
+    width = arr.shape[1]
+    height = arr.shape[0]
+    all_coordinates = np.argwhere(arr == 0)
+    for i in all_coordinates:
+        arr[i[0]][i[1]] = 1
+    return arr
