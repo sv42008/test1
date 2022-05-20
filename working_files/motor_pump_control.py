@@ -61,7 +61,7 @@ def motion_parameters(delta_t, microstep1_str = "fullstep", microstep2_str = "fu
     print("Parameters set: time interval = {}, microstepping for motor 1 = {}, microstepping for motor 2 = {}".format(delta_t, microstep1, microstep2))
     return
 
-def epoch():
+def epoch(del_t):
   # move and track progressing a unit of time
   sleep(del_t)
   global timer
@@ -98,10 +98,10 @@ def motor1_movements(theta):
     for i in range(number_of_steps):
         GPIO.output(STEP, 1)
         print("pulse on")
-        epoch()
+        epoch(del_t)
         GPIO.output(STEP, 0)
         print("pulse off")
-        epoch()
+        epoch(del_t)
 
     # updating current angle
     # global gbl_theta
@@ -142,10 +142,10 @@ def motor2_movements(phi):
     for i in range(number_of_steps):
         GPIO.output(STEP, 1)
         print("pulse on")
-        epoch()
+        epoch(del_t)
         GPIO.output(STEP, 0)
         print("pulse off")
-        epoch()
+        epoch(del_t)
 
     # updating current angle
     # global gbl_phi
